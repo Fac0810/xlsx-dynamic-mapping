@@ -3,12 +3,9 @@ const dotenv = require('dotenv')
 const connectDB = require('./gateways/mongo')
 
 dotenv.config()
-
-const PORT = process.env.PORT 
-
+const PORT = process.env.PORT
 
 connectDB()
-
 app.listen(PORT, () => {
-	console.log(`Example app listening on port ${PORT}`)
+	console.log(`Server running on port ${PORT}`)
 })
