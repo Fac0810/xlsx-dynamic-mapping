@@ -7,7 +7,8 @@ import { defineConfig } from "eslint/config";
 export default defineConfig([
 	{ files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.node },     rules: {
 		"indent": ["error", "tab"],
-		"no-mixed-spaces-and-tabs": ["error", "smart-tabs"]
+		"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+		"semi": ["error", "never"] 
 	} },
 	{ files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
 	{ files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },

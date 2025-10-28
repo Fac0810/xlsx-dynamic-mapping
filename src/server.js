@@ -1,13 +1,13 @@
-const app = require('./app');
-const dotenv = require('dotenv');
-const connectDB = require('./db/mongo');
+const app = require('./app')
+const dotenv = require('dotenv')
+const connectDB = require('./gateways/mongo')
 
-dotenv.config();
+dotenv.config()
 
 const PORT = process.env.PORT 
 
 
-connectDB();
+connectDB()
 
 app.listen(PORT, () => {
 	console.log(`Example app listening on port ${PORT}`)
