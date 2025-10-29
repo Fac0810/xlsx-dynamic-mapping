@@ -3,7 +3,7 @@ const makeTasksDb = require('../src/gateways/makeTasksDb')
 const makeAddTask = require('../src/use-cases/addTask')
 const makeProcessTask = require('../src/use-cases/processTask')
 const dotenv = require('dotenv')
-const { getTaskStatus } = require('../src/use-cases')
+const makeGetTaskStatus = require('../src/use-cases/getTaskStatus')
 dotenv.config()
 
 describe('processTask use-case', () => {
@@ -12,6 +12,7 @@ describe('processTask use-case', () => {
 	let processTask
 	let validMapping
 	let validFileName
+	let getTaskStatus
 
 	beforeAll(async () => {
 		await mongoose.connect(process.env.MONGO_URI, {
@@ -37,6 +38,7 @@ describe('processTask use-case', () => {
 
 		addTask = makeAddTask({ db: tasksDb })
 		processTask = makeProcessTask({ db: tasksDb, parseXlsx })
+		getTaskStatus = makeGetTaskStatus({ db: tasksDb })
 
 		validMapping = { age: 'Number', name: 'String', nums: 'Array<Number>' }
 		validFileName = 'file.xlsx'

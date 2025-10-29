@@ -1,7 +1,7 @@
 const makeTask = require('../entities')
 
 function makeProcessTask({ db, parseXlsx }) {
-	return async function processTask(taskId) {
+	return async function processTask(taskId, buffer) {
 		const existing = await db.findById({ id: taskId })
 		if (!existing) throw new Error('Task not found.')
 
@@ -19,11 +19,12 @@ function makeProcessTask({ db, parseXlsx }) {
 		})
 
 		try {
+			    
 			const { result, errors } = await parseXlsx({
-				fileName: task.getFileName(),
+				buffer,            
 				mapping: task.getMapping(),
+				db,
 			})
-
 			task.markDone(result, errors)
 
 			await db.update({

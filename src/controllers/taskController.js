@@ -5,9 +5,13 @@ const headers = {
 }
 
 async function createTask({ body }) {
-	const { fileName, mapping } = body
+	const { fileName, mapping, buffer } = body 
 	try {
 		const task = await taskService.addTask({ fileName, mapping })
+
+		taskService.processTask(task.id, buffer).catch(err => {
+			console.error(`Error processing task ${task.id}:`, err)
+		})
 		return {
 			headers,
 			statusCode: 201,

@@ -13,6 +13,7 @@ describe('createTask controller', () => {
 	it('should returns 201 and the created task when successful', async () => {
 		const mockTask = { id: '123', fileName: 'file.xlsx', mapping: { age: 'Number' } }
 		taskService.addTask.mockResolvedValue(mockTask)
+		taskService.processTask = jest.fn().mockResolvedValue(mockTask.id) 
 
 		const req = { body: { fileName: 'file.xlsx', mapping: { age: 'Number' } } }
 

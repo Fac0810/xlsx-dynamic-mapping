@@ -8,7 +8,8 @@ module.exports = function makeExpressCallback(controller) {
 			ip: req.ip,
 			method: req.method,
 			path: req.path,
-			headers: req.headers
+			headers: req.headers,
+			file: req.file || null,
 		}
 
 		try {
